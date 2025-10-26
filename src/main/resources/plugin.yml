@@ -15,6 +15,11 @@ commands:
     description: Pay another player
     usage: /pay <player> <amount>
     permission: customecon.pay
+  balancegui:
+    description: Open the balance GUI
+    usage: /balancegui
+    permission: customecon.balancegui
+    aliases: [balgui, moneygui]
 
 permissions:
   customecon.balance:
@@ -25,4 +30,7 @@ permissions:
     default: op
   customecon.pay:
     description: Allows paying other players
+    default: true
+  customecon.balancegui:
+    description: Allows opening the balance GUI
     default: true

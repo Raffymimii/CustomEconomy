@@ -1,7 +1,9 @@
 package com.raffymimi.customeconomy;
 
 import com.raffymimi.customeconomy.commands.BalanceCommand;
+import com.raffymimi.customeconomy.commands.BalanceGUICommand;
 import com.raffymimi.customeconomy.commands.PayCommand;
+import com.raffymimi.customeconomy.listeners.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,6 +34,7 @@ public class EconomyPlugin extends JavaPlugin {
         }
 
         registerCommands();
+        registerListeners();
 
         getLogger().info("CustomEconomy has been enabled!");
     }
@@ -68,6 +71,15 @@ public class EconomyPlugin extends JavaPlugin {
         if (payCmd != null) {
             payCmd.setExecutor(new PayCommand(this));
         }
+
+        PluginCommand balanceGuiCmd = getCommand("balancegui");
+        if (balanceGuiCmd != null) {
+            balanceGuiCmd.setExecutor(new BalanceGUICommand(this));
+        }
+    }
+
+    private void registerListeners() {
+        getServer().getPluginManager().registerEvents(new GUIListener(this), this);
     }
 
     public EconomyManager getEconomyManager() {

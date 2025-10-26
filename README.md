@@ -6,11 +6,12 @@ A lightweight economy plugin for Paper/Spigot 1.21.x servers with a simple balan
 
 - Player balance management
 - Player-to-player payments
+- Interactive GUI for viewing balance
 - Customizable currency symbol and formatting
 - Configurable starting balance
 - Fully customizable messages with color codes
 - Sound effects for transactions
-- Permission-based access control
+- Permission-based control
 
 ## Requirements
 
@@ -46,8 +47,8 @@ currency:
   decimals: true
 ```
 
-- `symbol`: The currency symbol displayed before amounts (e.g., $, €, £, ⛃)
-- `decimals`: Whether to show decimal places (true = $100.50, false = $100)
+- `symbol`: The currency symbol displayed before amounts (e.g. $, €, £, ⛃)
+- `decimals`: Whether to show decimals (true = $100.50, false = $100)
 
 ### Starting Balance
 
@@ -59,7 +60,7 @@ The amount of money new players start with when they first join the server.
 
 ### Messages
 
-All messages support Minecraft color codes using `&` (e.g., `&a` for green, `&c` for red).
+All messages support Minecraft color codes using `&` (e.g. `&a` for green, `&c` for red).
 
 ```yaml
 messages:
@@ -72,6 +73,14 @@ messages:
   insufficient-funds: "&cYou don't have enough funds."
   paid-sender: "&aYou paid &e{player} &a{amount}. New balance: &e{newBalance}"
   paid-target: "&aYou received &e{amount} &afrom &e{player}. New balance: &e{newBalance}"
+  gui-title: "&6&lYour Balance"
+  gui-balance-title: "Balance"
+  gui-current-balance: "Current Balance:"
+  gui-info-title: "Information"
+  gui-info-line1: "Use /pay to send money"
+  gui-info-line2: "Use /balance to check balance"
+  gui-info-line3: "Click the barrier to close"
+  gui-close: "Close"
 ```
 
 #### Available Placeholders
@@ -80,7 +89,7 @@ messages:
 - `{player}` - The player's name
 - `{newBalance}` - The updated balance after transaction (formatted with currency symbol)
 
-#### Color Codes Reference
+#### Color Code Reference
 
 - `&0` - Black
 - `&1` - Dark Blue
@@ -137,8 +146,30 @@ Send money to another player.
 - You cannot pay yourself
 - You must have sufficient funds
 - Amount must be greater than 0
-- Both sender and recipient receive notifications
-- Sound effects play on successful transactions
+- Both sender and receiver get notifications
+- Sound effects play on successful transaction
+
+### /balancegui
+
+Open an interactive GUI to view your balance.
+
+**Aliases:** `/balgui`, `/moneygui`
+
+**Usage:**
+- `/balancegui` - Opens a GUI showing your current balance and useful information
+
+**Features:**
+- Visual display of your current balance
+- Information panel with helpful tips
+- User-friendly interface
+- Click barrier to close
+
+**Examples:**
+```
+/balancegui
+/balgui
+/moneygui
+```
 
 ## Permissions
 
@@ -160,6 +191,12 @@ Send money to another player.
 **Default:** `true` (all players)  
 **Commands:** `/pay`
 
+### customecon.balancegui
+
+**Description:** Allows opening the balance GUI  
+**Default:** `true` (all players)  
+**Commands:** `/balancegui`
+
 ## Data Storage
 
 Player balances are stored in `plugins/CustomEconomy/balances.yml` in the following format:
@@ -169,15 +206,25 @@ uuid-here: 150.0
 another-uuid: 250.50
 ```
 
-The file is automatically created on first run and saved when the server shuts down or the plugin is disabled.
+The file is automatically created on first startup and saved when the server shuts down or the plugin is disabled.
+
+## GUI Customization
+
+The balance GUI can be fully customized through the config.yml file. You can modify:
+- GUI title
+- Item display names
+- Lore text
+- Information messages
+
+All GUI messages support Minecraft color codes for complete customization.
 
 ## Support
 
-For bug reports, feature requests, or questions, please open an issue on the project repository.
+For bug reports, feature requests, or questions, please open an issue in the project repository.
 
 ## License
 
-This plugin is provided as-is without warranty. Feel free to modify and distribute according to your needs.
+This plugin is provided as-is without warranty. Feel free to modify and distribute as needed.
 
 ## Credits
 
