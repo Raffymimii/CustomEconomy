@@ -1,0 +1,4 @@
+com\raffymimi\customeconomy\commands\PayCommand.class
+com\raffymimi\customeconomy\EconomyPlugin.class
+com\raffymimi\customeconomy\EconomyManager.class
+com\raffymimi\customeconomy\commands\BalanceCommand.class

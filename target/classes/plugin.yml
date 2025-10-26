@@ -1,0 +1,28 @@
+name: CustomEconomy
+main: com.raffymimi.customeconomy.EconomyPlugin
+version: 1.0.0
+api-version: '1.21'
+author: raffymimi
+description: Custom economy plugin with balance and payment system
+
+commands:
+  balance:
+    description: Check your balance or another player's balance
+    usage: /balance [player]
+    permission: customecon.balance
+    aliases: [bal, money]
+  pay:
+    description: Pay another player
+    usage: /pay <player> <amount>
+    permission: customecon.pay
+
+permissions:
+  customecon.balance:
+    description: Allows checking your own balance
+    default: true
+  customecon.balance.others:
+    description: Allows checking other players' balances
+    default: op
+  customecon.pay:
+    description: Allows paying other players
+    default: true
